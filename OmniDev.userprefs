@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Omni Scripts\ThirdPersonController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Unicycle.cs">
     <Files>
-      <File FileName="Assets\Omni Scripts\ThirdPersonController.cs" Line="269" Column="31" />
+      <File FileName="Assets\Unicycle.cs" Line="27" Column="12" />
+      <File FileName="Assets\Scripts\ThirdPersonController.cs" Line="451" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

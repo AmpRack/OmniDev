@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Default Scripts\Utility Scripts\CombineChildren.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\Utility Scripts\MeshCombineUtility.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
+     <Compile Include="Assets\Unicycle.cs" />
      <Compile Include="Assets\Unity Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <None Include="Assets\Unity Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
