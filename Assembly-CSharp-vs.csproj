@@ -46,11 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\ButtonScript.cs" />
+     <Compile Include="Assets\Scripts\Button_PressStart.cs" />
+     <Compile Include="Assets\Scripts\CameraMenu.cs" />
      <Compile Include="Assets\Scripts\CameraMover.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\General Scripts\ActivateTrigger.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\Utility Scripts\CombineChildren.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\Utility Scripts\MeshCombineUtility.cs" />
-     <Compile Include="Assets\Scripts\MenuMover.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
      <Compile Include="Assets\Scripts\Unicycle.cs" />
      <Compile Include="Assets\Unity Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
