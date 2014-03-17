@@ -1,9 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ButtonScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Default Scripts\Camera Scripts\Button_Back.cs">
     <Files>
-      <File FileName="Assets\Scripts\Button_PressStart.cs" Line="11" Column="40" />
-      <File FileName="Assets\Scripts\ButtonScript.cs" Line="25" Column="25" />
+      <File FileName="Assets\Scripts\Default Scripts\Camera Scripts\Button_PressStart.cs" Line="40" Column="1" />
+      <File FileName="Assets\Scripts\Default Scripts\Camera Scripts\ButtonScript.cs" Line="12" Column="24" />
+      <File FileName="Assets\Scripts\Default Scripts\Camera Scripts\Button_Singleplayer.cs" Line="40" Column="1" />
+      <File FileName="Assets\Scripts\Default Scripts\Camera Scripts\Button_Multiplayer.cs" Line="40" Column="1" />
+      <File FileName="Assets\Scripts\Default Scripts\Camera Scripts\Button_Options.cs" Line="12" Column="1" />
+      <File FileName="Assets\Scripts\Default Scripts\Camera Scripts\Button_Back.cs" Line="40" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
