@@ -46,17 +46,19 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\CameraMenu.cs" />
-     <Compile Include="Assets\Scripts\CameraMover.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\ButtonScript.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\Button_Back.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\Button_Multiplayer.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\Button_Options.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\Button_PressStart.cs" />
+     <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\Button_Quit.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\Button_Singleplayer.cs" />
+     <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\CameraMenu.cs" />
+     <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\CameraMover.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\General Scripts\ActivateTrigger.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\Utility Scripts\CombineChildren.cs" />
      <Compile Include="Assets\Scripts\Default Scripts\Utility Scripts\MeshCombineUtility.cs" />
+     <Compile Include="Assets\Scripts\TPControl.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
      <Compile Include="Assets\Scripts\Unicycle.cs" />
      <Compile Include="Assets\Unity Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />

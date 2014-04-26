@@ -27,7 +27,7 @@ public class ButtonScript : MonoBehaviour {
 	GameObject backButton3;
 
 	void Awake() {
-		// Find all button objects and define them
+		// Find all button gameObjects and define them
 		startButton = GameObject.Find("ButtonStart");
 		singleplayerButton = GameObject.Find("ButtonSP");
 		multiplayerButton = GameObject.Find("ButtonMP");

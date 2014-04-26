@@ -18,79 +18,56 @@ public class ThirdPersonController : MonoBehaviour
 	public float jumpAnimationSpeed = 1.15f;
 	public float landAnimationSpeed = 1.0f;
 	private Animation _animation;
-	// Need to add death/win/lose states here later
+
 	enum CharacterState {
 		Idle = 0,
 		Walking = 1,
 		Running = 2,
 		Boosting = 3,
 		Jumping = 4,
+		Death = 5,
+		Victory = 6,
+		Failure = 7,
 	}
 	private CharacterState _characterState;
 
 // Movement
-	// 'Walking' is the capped speed between 0 and maxSpeed
-	public float walkSpeed = 2.0f;
-	// 'Running' is a normal maximum speed. Vehicles cannot move faster than this without special means
-	public float runSpeed = 4.0f;
-	// 'Boosting' is above max speed, and only happens with special items or boost pads. 
-	public float boostSpeed = 6.0f;
-	// Amount of control player has while in air.
-	public float inAirControlAcceleration = 3.0f;
-	// How high do we jump when pressing jump and letting go immediately
-	public float jumpHeight = 0.5f;
-	// The gravity for the character
-	public float gravity = 20.0f;
-	// The gravity in controlled descent mode
-	public float speedSmoothing = 10.0f;
-	// How fast to turn around when changing horizontal directions while running
-	public float rotateSpeed = 500.0f;
-	// Time it takes to go from walking to running
-	public float runAfterSeconds = 3.0f;
-	// Currently unimplemented, may be unnecessary with moveSpeed, below
-//	private float currentSpeed = 0.0f;
-	// Ratio of total / maximum speed
-	private float speedRatio = 0.0f;
-	// Is the user pressing any keys?
-	private bool isMoving = false;
-	// When did the user start walking (Used for going into trot after a while)
-	private float walkTimeStart = 0.0f;
-	// Controls whether input is passed or not
-	private bool isControllable = true;
-	// The current move direction in x-z
-	private Vector3 moveDirection = Vector3.zero;
-	// The current vertical speed
-	private float verticalSpeed = 0.0f;
-	// The current x-z move speed
-	private float moveSpeed= 0.0f;
-	// The last collision flags returned from controller.Move
-	private CollisionFlags collisionFlags; 
+	public float walkSpeed = 2.0f;					// 'Walking' is the capped speed between 0 and maxSpeed
+	public float runSpeed = 4.0f;					// 'Running' is a normal maximum speed. Vehicles cannot move faster than this without special means
+	public float boostSpeed = 6.0f;					// 'Boosting' is above max speed, and only happens with special items or boost pads. 
+	public float inAirControlAcceleration = 3.0f;	// Amount of control player has while in air.
+	public float jumpHeight = 0.5f;					// How high do we jump when pressing jump and letting go immediately
+	public float gravity = 20.0f;					// The gravity for the character
+	public float speedSmoothing = 10.0f;			// The gravity in controlled descent mode
+	public float rotateSpeed = 500.0f;				// How fast to turn around when changing horizontal directions while running
+	public float runAfterSeconds = 3.0f;			// Time it takes to go from walking to running
+	private float currentSpeed = 0.0f;				// Currently unimplemented, may be unnecessary with moveSpeed, below
+	private float speedRatio = 0.0f;				// Ratio of total / maximum speed
+	private bool isMoving = false;					// Is the user pressing any keys?
+	private float walkTimeStart = 0.0f;				// When did the user start walking (Used for going into trot after a while)
+	private bool isControllable = true;				// Controls whether input is passed or not
+	private Vector3 moveDirection = Vector3.zero;	// The current move direction in x-z
+	private float verticalSpeed = 0.0f;				// The current vertical speed
+	private float moveSpeed= 0.0f;					// The current x-z move speed
+	private CollisionFlags collisionFlags; 			// The last collision flags returned from controller.Move
 
 // Jumping
-	public bool canJump= true;
-	// Control how quickly one can jump after landing another jump
-	private float jumpRepeatTime= 0.05f;
+	public bool canJump= true;						
+	private float jumpRepeatTime= 0.05f;			// Control how quickly one can jump after landing another jump
 	private float jumpTimeout= 0.15f;
 	private float groundedTimeout= 0.25f;
-	// Are we jumping? (Initiated with jump button and not grounded yet)
-	private bool jumping= false;
+	private bool jumping= false;					// Are we jumping? (Initiated with jump button and not grounded yet)
 	private bool jumpingReachedApex= false;
-	// Last time the jump button was clicked down
-	private float lastJumpButtonTime= -10.0f;
-	// Last time we performed a jump
-	private float lastJumpTime= -1.0f;
-	// the height we jumped from (Used to determine for how long to apply extra jump power after jumping.)
-	private float lastJumpStartHeight= 0.0f;
+	private float lastJumpButtonTime= -10.0f;		// Last time the jump button was clicked down
+	private float lastJumpTime= -1.0f;				// Last time we performed a jump
+	private float lastJumpStartHeight= 0.0f;		// the height we jumped from (Used to determine for how long to apply extra jump power after jumping.)
 	private Vector3 inAirVelocity= Vector3.zero;
 	private float lastGroundedTime= 0.0f;
 
 // Camera Stuff
-	// The camera doesnt start following the target immediately but waits for a split second to avoid too much waving around.
-	private float lockCameraTimer= 0.0f;
-	// Set the maximum distance from vehicle the camera will track ahead
-	public float cameraFocalPointDistance = 0.0f;
-	// Initialized here, declared during Awake
-	private GameObject cameraFocalPoint; 
+	private float lockCameraTimer= 0.0f;			// The camera doesnt start following the target immediately but waits for a split second to avoid too much waving around.
+	public float cameraFocalPointDistance = 0.0f;	// Set the maximum distance from vehicle the camera will track ahead
+	private GameObject cameraFocalPoint; 			// Initialized here, declared during Awake
 	
 
 	void Awake ()
@@ -139,33 +116,30 @@ public class ThirdPersonController : MonoBehaviour
 	}
 	
 	
-	void  UpdateSmoothedMovementDirection ()
-	{
-		speedRatio = (moveSpeed / runSpeed);
+	void  UpdateSmoothedMovementDirection() {
 		Transform cameraTransform = Camera.main.transform;
 		bool grounded = IsGrounded();
 		
 		// Forward vector relative to the camera along the x-z plane	
-		Vector3 forward= cameraTransform.TransformDirection(Vector3.forward);
+		Vector3 forward = cameraTransform.TransformDirection(Vector3.forward);
 		forward.y = 0;
 		forward = forward.normalized;
 		
 		// Right vector relative to the camera
 		// Always orthogonal to the forward vector
-		Vector3 right= new Vector3(forward.z, 0, -forward.x);
+		Vector3 right = new Vector3(forward.z, 0, -forward.x);
 		
-		float v= Input.GetAxisRaw("Vertical");
-		float h= Input.GetAxisRaw("Horizontal");
+		float v = Input.GetAxisRaw("Vertical");
+		float h = Input.GetAxisRaw("Horizontal");
 		
-		bool wasMoving= isMoving;
-		isMoving = Mathf.Abs (h) > 0.1f || Mathf.Abs (v) > 0.1f;
+		bool wasMoving = isMoving;
+		isMoving = ((Mathf.Abs (h) > 0.1f) || (Mathf.Abs (v) > 0.1f));
 		
 		// Target direction relative to the camera
-		Vector3 targetDirection= h * right + v * forward;
+		Vector3 targetDirection = ((h * right) + (v * forward));
 		
 		// Grounded controls
-		if (grounded)
-		{
+		if (grounded) {
 			// Lock camera for short period when transitioning moving & standing still
 			lockCameraTimer += Time.deltaTime;
 			if (isMoving != wasMoving)
@@ -223,8 +197,7 @@ public class ThirdPersonController : MonoBehaviour
 				walkTimeStart = Time.time;
 		}
 		// In air controls
-		else
-		{
+		else {
 			// Lock camera while in air
 			if (jumping == true)
 				lockCameraTimer = 0.0f;
@@ -232,9 +205,6 @@ public class ThirdPersonController : MonoBehaviour
 			if (isMoving == true)
 				inAirVelocity += targetDirection.normalized * Time.deltaTime * inAirControlAcceleration;
 		}
-		
-		
-		
 	}
 	
 	
@@ -257,20 +227,16 @@ public class ThirdPersonController : MonoBehaviour
 	
 	void  ApplyGravity ()
 	{
-		if (isControllable == true)	// don't move player at all if not controllable.
-		{
-			// Apply gravity
+		if (isControllable == true)	{// don't move player at all if not controllable.
+		
 			bool jumpButton = Input.GetButton("Jump");
-			
-			
 			// When we reach the apex of the jump we send out a message
-			if (jumping && !jumpingReachedApex && verticalSpeed <= 0.0f)
-			{
+			if (jumping && !jumpingReachedApex && verticalSpeed <= 0.0f) {
 				jumpingReachedApex = true;
 				SendMessage("DidJumpReachApex", SendMessageOptions.DontRequireReceiver);
 			}
 			
-			if (IsGrounded () == true)
+			if (IsGrounded() == true)
 				verticalSpeed = 0.0f;
 			else
 				verticalSpeed -= gravity * Time.deltaTime;
