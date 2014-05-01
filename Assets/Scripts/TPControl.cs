@@ -30,8 +30,11 @@ public class TPControl : MonoBehaviour {
 	public float deadZone = 0.1f;				// Controller deadzone; minimum input needed to register
 	public Vector3 moveDirection {get; set;}	// Determines overall direction of movement
 	public float verticalVelocity {get; set;}	// Current vertical movement
-	public int maxBoostFactor = 100;			// Maximum boost range, percentage-wise
+	public int maxBoostFactor = 200;			// Maximum boost range, percentage-wise
 	private int boostFactor = 100;				// Current percentage of boost.
+	private int boostTimer = 100;				// Length of time we can be boosting
+	private bool isBoosting = false;			// Using a boost, or in a speed-up area; boost is more than 100%
+	private bool isSlowing = false;				// Stuck in a slow-down area; boost is less than 100%
 
 // Miscellaneous
 	class vehicleParts {						// Eventually, this will be fed into KillUni. Hopefully.
@@ -63,6 +66,7 @@ public class TPControl : MonoBehaviour {
 	private CharacterState _characterState;
 	private bool isControllable = true;		// This doesn't do much right now
 
+
 	CharacterController controller;
 	
 	void Awake() {
@@ -79,6 +83,11 @@ public class TPControl : MonoBehaviour {
 		InputListener();					// Listen for jumping or boosting
 		ApplyMovement();					// Convert input to actual movement
 		Realignment();						// Move back to Z=0 to keep aligned on the track
+		DebugMessenger();					// Throws variable reports
+		isBoosting = false;
+		if (boostTimer < 0) {
+			boostTimer = 0;
+		}
 	}
 
 	void MovementListener() {
@@ -91,10 +100,27 @@ public class TPControl : MonoBehaviour {
 
 	void InputListener() {
 		if (Input.GetButton ("Jump")) {
-				Jump();
+			Jump();
 		}
-		if (Input.GetButtonDown ("Boost")) {
-				Boost();
+		if (Input.GetButton ("Boost")) {
+			Boost();
+		}
+	}
+
+	void Jump(){	// Should also figure out how to do down-jumping through a platform...
+		if (controller.isGrounded) {
+			verticalVelocity = jumpHeight;
+		}
+	}
+	
+	void Boost() {
+		if ((boostTimer > 0) && (boostFactor <= maxBoostFactor)) {
+			isBoosting = true;
+			boostFactor += 3;
+			if (boostFactor > maxBoostFactor) { 
+				boostFactor = maxBoostFactor;
+			}
+			boostTimer--;
 		}
 	}
 
@@ -103,10 +129,34 @@ public class TPControl : MonoBehaviour {
 		if (moveDirection.magnitude > 1) {
 			moveDirection = Vector3.Normalize(moveDirection);
 		}
+		CheckBoost();		// This is to make sure the boostFactor is in the proper bounds, before it gets applied
 		moveDirection *= (moveSpeed * (boostFactor / 100));
 		moveDirection = new Vector3(moveDirection.x, verticalVelocity, moveDirection.z);
 		ApplyWeight();
 		controller.Move(moveDirection * Time.deltaTime); 
+	}
+
+	void CheckBoost() {
+		// If you're going faster than your normal speed, slow down a bit
+		if ((!isSlowing) & (!isBoosting) & (boostFactor > 100)) {
+			boostFactor -= 4;
+		}
+		// If you're going slower for any normal reason, speed back up.
+		if ((!isSlowing) & (boostFactor < 100)) {
+			boostFactor = 100;
+		}
+		// If you hit your speed limit while boosting, reset to maxBoostFactor
+		if ((isBoosting) & (boostFactor > maxBoostFactor)) {	
+			boostFactor = maxBoostFactor;
+		}
+		// If you go too slow while slowing, reset to 1. Slowing should NEVER stop you. 
+		if ((isSlowing) & (boostFactor < 1)) {			
+			boostFactor = 1;
+		}
+		// Make sure boostTimer cant be negative
+		if (boostTimer < 0) {
+			boostTimer = 0;
+		}
 	}
 
 	void ApplyWeight(){
@@ -116,17 +166,6 @@ public class TPControl : MonoBehaviour {
 		if (controller.isGrounded && moveDirection.y < -1) {
 			moveDirection = new Vector3(moveDirection.x, (-1), moveDirection.z);
 		}
-	}
-
-	void Jump(){	// Should also figure out how to do down-jumping through a platform...
-		if (controller.isGrounded) {
-			verticalVelocity = jumpHeight;
-		}
-	}
-
-	void Boost() {
-		// Coming soon
-		// boostFactor ranges between 1 (regular speed) and maxBoostFactor, and is multiplied into moveSpeed
 	}
 
 // Realigns the player to the track
@@ -180,6 +219,10 @@ public class TPControl : MonoBehaviour {
 			_animation = null;
 			Debug.Log ("No failure animation found. Turning off animations.");
 		}
+	}
+
+	void DebugMessenger() {
+		Debug.Log ("Current boostFactor is " + boostFactor + ", and boostTimer is " + boostTimer); 
 	}
 
 // In case of emergency, this is the super stripped down version for testing.

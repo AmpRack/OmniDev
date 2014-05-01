@@ -1,5 +1,6 @@
 Commit history:
 
+04-30-2013	Boost System			-	Ability to trigger speed boosting (and slowing)
 04-25-2014	New Controller			-	A new demo-scene was created to test a non-rigidbody controller. Lots of cleanup.
 03-17-2014	Menu Skeleton 3			-	Button scripting is working and streamlined.
 03-14-2014	Menu Skeleton 2			-	Updated button models. Scripting is still a scrappy pile of not-working.
