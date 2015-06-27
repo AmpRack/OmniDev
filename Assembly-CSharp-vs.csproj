@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_2;UNITY_4_3;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_5_2;UNITY_4_5;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,23 +46,98 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\ButtonScript.cs" />
-     <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\Button_Back.cs" />
-     <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\Button_Multiplayer.cs" />
-     <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\Button_Options.cs" />
-     <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\Button_PressStart.cs" />
-     <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\Button_Quit.cs" />
-     <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\Button_Singleplayer.cs" />
-     <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\CameraMenu.cs" />
-     <Compile Include="Assets\Scripts\Default Scripts\Camera Scripts\CameraMover.cs" />
-     <Compile Include="Assets\Scripts\Default Scripts\General Scripts\ActivateTrigger.cs" />
-     <Compile Include="Assets\Scripts\Default Scripts\Utility Scripts\CombineChildren.cs" />
-     <Compile Include="Assets\Scripts\Default Scripts\Utility Scripts\MeshCombineUtility.cs" />
-     <Compile Include="Assets\Scripts\TPControl.cs" />
-     <Compile Include="Assets\Scripts\ThirdPersonController.cs" />
-     <Compile Include="Assets\Scripts\Unicycle.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Animators\AnimationLogger2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Animators\HeroAnimator2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Animators\Unity2DSpriteAnimator2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\ExtraFeatures\Collectable2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\ExtraFeatures\EnemyPatrol2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\ExtraFeatures\HitBox2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\ExtraFeatures\KillBox2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\ExtraFeatures\RespawnPoint2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\ExtraFeatures\SimpleHealth2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\BackAndForthPlatform2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\Brick2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\DecayingPlatform2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\FallingPlatform2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\Ladders\Ladder2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\Ladders\LadderCollider2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\Ladders\LadderControl2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\Ladders\TopStepPlatform2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\PassthroughPlatform2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\SlidingPlatform2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\SlipperyPlatform2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\SpringboardPlatform2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\UnBreakableBrick2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Platforms\UpAndDownPlatform2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Plugins\Box2DExtension.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Plugins\DirectionChecker2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Plugins\Platform2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Plugins\RaycastCharacterController2D.cs" />
+     <Compile Include="Assets\2DPlatformController\2DVersion\Scripts\Plugins\SetUpPhysics2D.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Animators\AnimationBridge.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Animators\AnimationLogger.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Animators\HeroAnimator.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Animators\ModelAnimator.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\CameraFollow.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Collectable.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Enemies\EnemyAIController.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Enemies\EnemyBounceAndFall.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Enemies\EnemyBounceAndFallInput.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Enemies\EnemyPatrol.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Enemies\IEnemy.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Enemies\JumpOnHead.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\FallDamage.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Float.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\HitBox.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\KillBox.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Physics\BarrelPlatform.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Physics\BarrelPush.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Physics\BoxPuller.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Physics\PushablePullableBox.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Projectile.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\ResetSpriteRotation.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\RespawnPoint.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\Shooter.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\SimpleHealth.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\SimpleHealthBarUI.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\ExtraFeatures\SwimTrigger.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Inputs\SimpleCharacterInput.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Inputs\StandardMobileInput.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Inputs\SwimmingCharacterInput.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Inputs\TouchController.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Inputs\TouchControllerButton.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\BackAndForthPlatform.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\Brick.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\DecayingPlatform.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\FallingPlatform.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\Ladders\Ladder.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\Ladders\LadderCollider.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\Ladders\LadderControl.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\Ladders\TopStepPlatform.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\PassthroughPlatform.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\Ropes\Rope.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\Ropes\RopeCollider.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\Ropes\RopeControl.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\SlidingPlatform.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\SlipperyPlatform.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\SpringboardPlatform.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\UnBreakableBrick.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Platforms\UpAndDownPlatform.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Plugins\DirectionChecker.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Plugins\Platform.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Plugins\RaycastCharacterController.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Plugins\RaycastCharacterInput.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Plugins\SupportingClasses.cs" />
+     <Compile Include="Assets\2DPlatformController\Scripts\Utility\SetUpPhysics.cs" />
+     <Compile Include="Assets\2DPlatformController\ThirdParty\StandardAssets\Joystick.cs" />
+     <Compile Include="Assets\2DPlatformController\ThirdParty\iTween.cs" />
      <Compile Include="Assets\Unity Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Unity Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
+     <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\2DPlatformController\2DVersion\Samples\SupportingAssets\Textures\Scenery\tiles_spritesheet.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
